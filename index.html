@@ -1,0 +1,1064 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Simon Gorny, web developer in Malmö</title>
+<meta name="description" content="Portfolio of Simon Gorny, web developer and data and information scientist in Malmö. From online stores to team software to a RAG assistant.">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Simon Gorny, web developer in Malmö">
+<meta property="og:description" content="From bamboo toothbrushes to an AI that reads infrastructure documentation. A portfolio in eight chapters.">
+<!-- Replace YOUR-SITE-URL with the address where the site lives, for example https://simongorny.se -->
+<meta property="og:image" content="https://YOUR-SITE-URL/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="theme-color" content="#EDEFE9">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:ital,wght@0,400;0,500;0,600;0,700;1,400;1,600&display=swap">
+<style>
+:root{
+  --bg:#EDEFE9; --surface:#FAFBF8; --surface-2:#E3E7DF; --ink:#18211D; --muted:#56615B; --line:#CBD2C8;
+  --accent:#2C6A4D; --accent-soft:#D6E6DB; --amber:#B7802A; --amber-soft:#F2E3C6; --onaccent:#FFFFFF;
+  --shadow:0 1px 2px rgba(24,33,29,.06),0 8px 24px -12px rgba(24,33,29,.18);
+  --display:"Schibsted Grotesk","Helvetica Neue",Arial,sans-serif;
+  --serif:"Literata",Georgia,"Times New Roman",serif;
+  --mono:"Schibsted Grotesk","Helvetica Neue",Arial,sans-serif;
+  --measure:64ch; --wrap:1180px; --rail:210px;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+@media (prefers-reduced-motion: reduce){html{scroll-behavior:auto}*{animation:none!important;transition:none!important}}
+body{background:var(--bg);color:var(--ink);font-family:var(--serif);font-size:18px;line-height:1.65;padding-inline:clamp(16px,4vw,40px);-webkit-font-smoothing:antialiased}
+a{color:var(--accent);text-underline-offset:3px;text-decoration-thickness:1px}
+a:focus-visible,button:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:4px}
+img{max-width:100%;display:block;height:auto}
+h1,h2,h3,h4{font-family:var(--display);line-height:1.06;text-wrap:balance;margin:0;letter-spacing:-.025em;font-weight:700}
+p{margin:0}
+.mono{font-family:var(--mono);font-size:.9rem;font-weight:500}
+.muted{color:var(--muted)}
+
+/* ── top bar ── */
+.topbar{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;display:flex;align-items:center;justify-content:space-between;gap:16px;max-width:var(--wrap);margin:0 auto;padding-block:14px;background:color-mix(in srgb,var(--bg) 88%,transparent);backdrop-filter:blur(8px);border-bottom:1px solid transparent}
+.brand{font-family:var(--display);font-weight:700;font-size:1.05rem;color:var(--ink);text-decoration:none;display:flex;align-items:center;gap:10px}
+.brand i{display:inline-grid;place-items:center;width:30px;height:30px;border-radius:50%;background:var(--ink);color:var(--bg);font-style:normal;font-size:.8rem;letter-spacing:.02em}
+.topnav{display:flex;gap:clamp(10px,2.4vw,26px);flex-wrap:wrap}
+.topnav a{font-family:var(--display);font-size:.95rem;color:var(--muted);text-decoration:none}
+.topnav a:hover{color:var(--ink)}
+
+/* ── hero ── */
+.hero{max-width:var(--wrap);margin:0 auto;padding-block:clamp(40px,8vw,96px) 28px}
+.hero .mono{color:var(--accent);font-weight:600;font-size:1rem}
+.hero h1{font-size:clamp(2.5rem,7.4vw,5.9rem);font-weight:800;margin-top:18px;max-width:15ch}
+.hero h1 em{font-style:normal;color:var(--accent)}
+.hero .lede{max-width:60ch;font-size:clamp(1.08rem,1.6vw,1.28rem);margin-top:26px;color:var(--ink)}
+.facts{display:flex;flex-wrap:wrap;gap:8px 10px;margin-top:28px;padding:0;list-style:none}
+.facts li{font-family:var(--display);font-size:.9rem;padding:6px 12px;border:1px solid var(--line);border-radius:99px;background:var(--surface)}
+
+/* ── route (timeline / table of contents) ── */
+.route{max-width:var(--wrap);margin:0 auto;padding-block:36px 20px}
+.route-head{display:flex;justify-content:space-between;align-items:baseline;gap:12px;flex-wrap:wrap;margin-bottom:18px}
+.route-head h2{font-size:1.2rem;font-weight:600}
+.stops{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));gap:0;list-style:none;padding:0;margin:0;position:relative}
+.stop{position:relative}
+.stop::before{content:"";position:absolute;left:0;right:0;top:9px;height:3px;background:var(--amber)}
+.stop.code::before{background:var(--accent)}
+.stop:last-child::before{right:auto;width:21px}
+.stop a{display:flex;flex-direction:column;gap:8px;text-decoration:none;color:var(--ink);padding-right:14px}
+.stop .dot{width:21px;height:21px;border-radius:50%;background:var(--bg);border:3px solid var(--amber);position:relative;z-index:1}
+.stop.code .dot{border-color:var(--accent)}
+.stop .yr{font-family:var(--mono);font-size:.82rem;color:var(--muted);font-variant-numeric:tabular-nums}
+.stop .nm{font-family:var(--display);font-weight:600;font-size:1.06rem;line-height:1.15}
+.stop .ln{font-size:.88rem;color:var(--muted);line-height:1.4}
+.stop .th{aspect-ratio:4/3;border-radius:6px;overflow:hidden;background:var(--surface-2);border:1px solid var(--line)}
+.stop .th img{width:100%;height:100%;object-fit:cover;transition:transform .5s ease}
+.stop a:hover .th img{transform:scale(1.04)}
+.stop .th.txt{display:flex;align-items:center;padding:8px 10px;background:var(--amber-soft);border-color:transparent}
+.stop .th.txt span{font-family:var(--display);font-weight:600;font-size:.78rem;line-height:1.25;color:var(--ink)}
+.route-legend{display:flex;gap:18px;flex-wrap:wrap;font-family:var(--display);font-size:.86rem;color:var(--muted)}
+.route-legend span::before{content:"";display:inline-block;width:18px;height:3px;border-radius:2px;margin-right:7px;vertical-align:middle;background:var(--amber)}
+.route-legend span.c::before{background:var(--accent)}
+@media (max-width:1000px){
+  .stops{grid-template-columns:1fr;gap:18px}
+  .stop::before,.stop:last-child::before{left:9px;right:auto;top:0;bottom:-18px;width:3px;height:auto}
+  .stop:last-child::before{bottom:auto;height:21px}
+  .stop a{display:grid;grid-template-columns:21px 92px 1fr;gap:4px 14px;align-items:start;padding-right:0}
+  .stop .dot{grid-row:1/4}
+  .stop .th{grid-row:1/4;grid-column:2}
+  .stop .yr,.stop .nm,.stop .ln{grid-column:3}
+}
+
+/* ── layout with rail ── */
+.book{max-width:var(--wrap);margin:0 auto;display:grid;grid-template-columns:var(--rail) minmax(0,1fr);gap:48px;padding-block:40px 80px}
+.rail{position:sticky;top:calc(env(safe-area-inset-top,0px) + 80px);align-self:start;display:flex;flex-direction:column;gap:4px;font-family:var(--display)}
+.rail .act{font-family:var(--mono);font-size:.8rem;font-weight:700;color:var(--ink);margin:16px 0 4px}
+.rail .act:first-child{margin-top:0}
+.rail a{font-size:.95rem;color:var(--muted);text-decoration:none;padding:5px 0 5px 12px;border-left:2px solid var(--line)}
+.rail a:hover{color:var(--ink)}
+.rail a.on{color:var(--ink);border-left-color:var(--accent);font-weight:600}
+.rail a.w.on{border-left-color:var(--amber)}
+@media (max-width:1060px){.book{grid-template-columns:minmax(0,1fr)}.rail{display:none}}
+.story{min-width:0;display:flex;flex-direction:column;gap:clamp(72px,10vw,120px)}
+
+/* ── act openers ── */
+.act-open{border-top:1px solid var(--line);padding-top:36px;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.3fr);gap:28px 48px;align-items:end}
+.act-open .mono{color:var(--amber);font-weight:700;font-size:1rem}
+.act-open.code .mono{color:var(--accent)}
+.act-open.full .mono{color:var(--amber)}
+.act-open h2{font-size:clamp(2.2rem,5vw,3.8rem);font-weight:800;margin-top:10px}
+.act-open p{color:var(--muted);max-width:52ch;font-size:1.06rem}
+@media (max-width:760px){.act-open{grid-template-columns:1fr}}
+
+/* ── chapter ── */
+.chapter{display:flex;flex-direction:column;gap:30px;scroll-margin-top:90px}
+.ch-kicker{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+.ch-kicker .num{font-family:var(--mono);font-size:.85rem;font-weight:600;padding:2px 9px;border-radius:4px;background:var(--amber-soft);color:var(--ink)}
+.chapter.code .ch-kicker .num{background:var(--accent-soft)}
+.ch-kicker .mono{color:var(--muted)}
+.chapter h3.title{font-size:clamp(2.1rem,4.6vw,3.4rem);font-weight:800;margin-top:12px}
+.chapter .sub{font-size:1.2rem;color:var(--muted);margin-top:12px;max-width:54ch}
+.meta{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:0;border-top:1px solid var(--line);border-bottom:1px solid var(--line);margin:0}
+.meta div{padding:14px 16px 14px 0}
+.meta div+div{padding-left:16px;border-left:1px solid var(--line)}
+.meta dt{font-family:var(--mono);font-size:.82rem;color:var(--muted)}
+.meta dd{margin:4px 0 0;font-family:var(--display);font-size:1rem;line-height:1.35}
+@media (max-width:760px){.meta{grid-template-columns:1fr 1fr}.meta div:nth-child(3){padding-left:0;border-left:0}.meta div:nth-child(n+3){border-top:1px solid var(--line)}}
+.prose{max-width:var(--measure);display:flex;flex-direction:column;gap:1em}
+.prose h4{font-size:1.25rem;font-weight:600;margin-top:.8em}
+.prose strong{font-weight:600}
+.two{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:36px;align-items:start}
+@media (max-width:820px){.two{grid-template-columns:1fr}}
+.did{list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:10px}
+.did li{padding-left:22px;position:relative;font-size:1rem;line-height:1.5}
+.did li::before{content:"";position:absolute;left:0;top:.62em;width:10px;height:2px;background:var(--amber)}
+.chapter.code .did li::before{background:var(--accent)}
+.stack{display:flex;flex-wrap:wrap;gap:6px;list-style:none;padding:0;margin:0}
+.stack li{font-family:var(--mono);font-size:.84rem;padding:3px 10px;border-radius:4px;background:var(--surface);border:1px solid var(--line);color:var(--ink)}
+.lesson{border-left:3px solid var(--amber);padding:4px 0 4px 20px;max-width:var(--measure);font-size:1.1rem}
+.chapter.code .lesson{border-left-color:var(--accent)}
+.lesson b{display:block;font-family:var(--mono);font-style:normal;font-size:.9rem;font-weight:700;color:var(--ink);margin-bottom:6px}
+
+/* ── figures ── */
+figure{margin:0}
+figcaption{font-family:var(--display);font-size:.86rem;color:var(--muted);margin-top:8px;line-height:1.4}
+.zoom{cursor:zoom-in;padding:0;border:0;background:none;display:block;width:100%;text-align:left}
+.shot{border-radius:10px;overflow:hidden;border:1px solid var(--line);background:var(--surface);box-shadow:var(--shadow)}
+.shot .bar{display:flex;align-items:center;gap:6px;padding:9px 12px;border-bottom:1px solid var(--line);background:var(--surface-2)}
+.shot .bar i{width:9px;height:9px;border-radius:50%;background:var(--line)}
+.shot .bar span{font-family:var(--mono);font-size:.8rem;color:var(--muted);margin-left:8px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.shot img{width:100%}
+.gal{display:grid;gap:12px}
+.gal img{width:100%;height:100%;object-fit:cover;border-radius:8px;background:var(--surface-2)}
+.gal .zoom{height:100%}
+.gal-sansara{grid-template-columns:repeat(6,minmax(0,1fr));grid-auto-rows:clamp(90px,11vw,150px)}
+.gal-sansara .a{grid-column:span 4;grid-row:span 3}.gal-sansara .b{grid-column:span 2;grid-row:span 3}
+.gal-sansara .c{grid-column:span 2;grid-row:span 2}.gal-sansara .d{grid-column:span 2;grid-row:span 2}.gal-sansara .e{grid-column:span 2;grid-row:span 2}
+.gal-bb{grid-template-columns:repeat(4,minmax(0,1fr));grid-auto-rows:clamp(120px,14vw,200px)}
+.gal-bb .t{grid-row:span 2}
+@media (max-width:640px){
+  .gal-sansara{grid-template-columns:1fr 1fr;grid-auto-rows:150px}
+  .gal-sansara>*{grid-column:span 1!important;grid-row:span 1!important}
+  .gal-sansara .a{grid-column:span 2!important;grid-row:span 2!important}
+  .gal-bb{grid-template-columns:1fr 1fr;grid-auto-rows:150px}
+}
+.shots3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
+.shots2{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
+@media (max-width:760px){.shots3,.shots2{grid-template-columns:1fr}}
+
+/* order flow (PostNord integration) */
+.flow{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:0;counter-reset:f;margin:0;padding:0;list-style:none}
+.flow li{position:relative;padding:14px 18px 14px 0}
+.flow li+li{padding-left:18px}
+.flow li+li::before{content:"";position:absolute;left:-7px;top:22px;width:12px;height:12px;border-top:2px solid var(--amber);border-right:2px solid var(--amber);transform:rotate(45deg)}
+.flow .k{font-family:var(--mono);font-size:.82rem;font-weight:600;color:var(--amber)}
+.flow .v{font-family:var(--display);font-weight:600;font-size:1.02rem;line-height:1.25;margin-top:4px}
+.flow .d{font-size:.88rem;color:var(--muted);line-height:1.4;margin-top:4px}
+.flowbox{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:18px 22px}
+.flowbox h4{font-size:1rem;font-weight:600;margin-bottom:6px}
+@media (max-width:760px){.flow{grid-template-columns:1fr}.flow li+li{padding-left:0}.flow li+li::before{left:2px;top:-6px;transform:rotate(135deg)}}
+
+/* campaign poster rebuild */
+.poster{background:#FFFFFF;color:#111;border-radius:10px;border:1px solid var(--line);padding:clamp(20px,4vw,40px);display:flex;flex-direction:column;gap:2px;font-family:var(--display);aspect-ratio:4/5;justify-content:space-between;overflow:hidden}
+.poster .top{display:flex;align-items:center;gap:8px}
+.poster .top img{width:120px;height:auto}
+.poster .bs{font-weight:700;font-size:clamp(1.6rem,4.3vw,2.7rem);line-height:.98;letter-spacing:-.03em}
+.poster .bs:nth-child(2){color:#EDA23A}.poster .bs:nth-child(3){color:#D9D9D9}
+.poster .v{font-weight:700;font-size:.95rem;margin-top:10px}.poster .v span{color:#EDA23A}
+.poster .foot{display:flex;justify-content:space-between;align-items:flex-end}
+.poster .foot small{font-size:.7rem;font-weight:600}
+.poster .foot b{font-size:clamp(1.4rem,3.4vw,2.2rem);color:#D9D9D9;letter-spacing:-.03em}
+
+/* client grid */
+.clients{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;list-style:none;padding:0;margin:0}
+.client{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:18px 18px 16px;display:flex;flex-direction:column;gap:8px}
+.client .top{display:flex;justify-content:space-between;align-items:baseline;gap:10px}
+.client h4{font-size:1.15rem;font-weight:600}
+.client .where{font-family:var(--mono);font-size:.8rem;color:var(--muted);white-space:nowrap}
+.client p{font-size:.95rem;line-height:1.45}
+.client .built{font-size:.88rem;color:var(--muted);line-height:1.45}
+.client .stack{margin-top:auto;padding-top:4px}
+.client .stack li{font-size:.66rem;padding:3px 7px}
+.client a.site{font-family:var(--display);font-size:.88rem}
+@media (max-width:980px){.clients{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:620px){.clients{grid-template-columns:1fr}}
+.tally{display:flex;flex-wrap:wrap;gap:10px 34px;font-family:var(--display)}
+.tally div{display:flex;flex-direction:column}
+.tally b{font-size:2.1rem;font-weight:600;line-height:1;font-variant-numeric:tabular-nums}
+.tally span{font-size:.86rem;color:var(--muted);margin-top:4px}
+
+
+/* toolkit */
+.kit-wrap{display:flex;flex-direction:column;gap:10px}
+.kit-h{font-family:var(--display);font-weight:700;font-size:1rem}
+.kit{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:12px}
+.kit-g{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:14px 16px 16px}
+.kit-g h5{font-family:var(--display);font-size:.84rem;font-weight:600;color:var(--muted);margin:0 0 12px}
+.kit-g ul{list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:10px}
+.tool{display:flex;align-items:center;gap:12px;font-family:var(--display);font-weight:600;font-size:1rem;line-height:1.2}
+.tool svg{width:38px;height:38px;padding:8px;border-radius:10px;background:var(--amber-soft);color:var(--ink);flex:none}
+.chapter.code .tool svg{background:var(--accent-soft)}
+.tool small{display:block;font-weight:400;color:var(--muted);font-size:.82rem;margin-top:2px}
+
+/* interlude */
+.interlude{background:var(--ink);color:var(--bg);border-radius:14px;padding:clamp(28px,5vw,56px);display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.2fr);gap:24px 48px;align-items:center}
+.interlude .mono{color:color-mix(in srgb,var(--bg) 65%,var(--ink))}
+.interlude h3{font-size:clamp(1.7rem,3.6vw,2.6rem);font-weight:600;margin-top:10px}
+.interlude p{font-size:1.06rem;color:color-mix(in srgb,var(--bg) 85%,var(--ink))}
+.interlude p+p{margin-top:12px}
+@media (max-width:760px){.interlude{grid-template-columns:1fr}}
+
+/* ALMA pipeline */
+.pipe{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:20px 22px;display:flex;flex-direction:column;gap:14px}
+.pipe h4{font-size:1rem;font-weight:600}
+.lane{display:flex;align-items:stretch;gap:0;flex-wrap:wrap}
+.lane .lbl{font-family:var(--mono);font-size:.84rem;font-weight:600;color:var(--muted);width:100%;margin-bottom:6px}
+.node{flex:1 1 130px;background:var(--bg);border:1px solid var(--line);border-radius:8px;padding:10px 12px;position:relative;margin-right:22px;margin-bottom:8px}
+.node:last-child{margin-right:0}
+.node:not(:last-child)::after{content:"";position:absolute;right:-17px;top:50%;width:10px;height:10px;border-top:2px solid var(--accent);border-right:2px solid var(--accent);transform:translateY(-50%) rotate(45deg)}
+.node b{display:block;font-family:var(--display);font-weight:600;font-size:.95rem;line-height:1.2}
+.node small{display:block;font-size:.8rem;color:var(--muted);line-height:1.35;margin-top:3px}
+.node.store{background:var(--accent-soft);border-color:transparent}
+@media (max-width:620px){.node{flex-basis:100%;margin-right:0;margin-bottom:18px}.node:not(:last-child)::after{right:auto;left:50%;top:auto;bottom:-15px;transform:translateX(-50%) rotate(135deg)}}
+
+/* results */
+.results{display:grid;grid-template-columns:minmax(0,.9fr) minmax(0,1.1fr);gap:18px}
+@media (max-width:820px){.results{grid-template-columns:1fr}}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:20px 22px}
+.card h4{font-size:1rem;font-weight:600}
+.card .note{font-size:.86rem;color:var(--muted);margin-top:4px;line-height:1.4}
+.sus{display:flex;gap:28px;margin-top:16px;flex-wrap:wrap}
+.sus div b{font-family:var(--display);font-size:3rem;font-weight:600;line-height:1;color:var(--accent);font-variant-numeric:tabular-nums}
+.sus div span{display:block;font-size:.88rem;color:var(--muted);margin-top:4px}
+.scale{margin-top:16px;position:relative;height:28px}
+.scale .track{position:absolute;left:0;right:0;top:8px;height:8px;border-radius:4px;background:linear-gradient(90deg,var(--surface-2) 0 68%,var(--accent-soft) 68% 100%)}
+.scale .m{position:absolute;top:2px;width:3px;height:20px;background:var(--accent);border-radius:2px}
+.scale .t{position:absolute;top:24px;font-family:var(--mono);font-size:.75rem;color:var(--muted);transform:translateX(-50%)}
+.bars{display:flex;flex-direction:column;gap:12px;margin-top:14px}
+.bar-row{display:grid;grid-template-columns:minmax(0,11rem) minmax(0,1fr) 3.2rem;gap:12px;align-items:center;font-size:.9rem}
+.bar-row .lab{font-family:var(--display);line-height:1.25}
+.bar-row .trk{height:14px;border-radius:3px;background:var(--surface-2);overflow:hidden;display:flex}
+.bar-row .alma{background:var(--accent)}
+.bar-row .own{background:var(--amber)}
+.bar-row .n{font-family:var(--mono);font-size:.84rem;color:var(--muted);text-align:right;font-variant-numeric:tabular-nums}
+.key{display:flex;gap:16px;font-family:var(--display);font-size:.84rem;color:var(--muted);margin-top:12px}
+.key span::before{content:"";display:inline-block;width:10px;height:10px;border-radius:2px;margin-right:6px;vertical-align:-1px;background:var(--accent)}
+.key span.o::before{background:var(--amber)}
+@media (max-width:520px){.bar-row{grid-template-columns:1fr 3rem}.bar-row .lab{grid-column:1/-1}}
+.findings{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px;list-style:none;padding:0;margin:0}
+.findings li{border-top:2px solid var(--accent);padding-top:12px}
+.findings b{display:block;font-family:var(--display);font-weight:600;font-size:1.05rem;line-height:1.25;margin-bottom:6px}
+.findings span{font-size:.95rem;line-height:1.5;display:block}
+.findings .mono{color:var(--accent);display:block;margin-bottom:6px;font-weight:600}
+@media (max-width:820px){.findings{grid-template-columns:1fr}}
+
+/* epilogue */
+.epi{border-top:1px solid var(--line);padding-top:36px;display:flex;flex-direction:column;gap:32px}
+.epi h2{font-size:clamp(2.2rem,5vw,3.6rem);font-weight:800;margin-top:10px}
+.bring{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:22px;list-style:none;padding:0;margin:0}
+.bring li{display:flex;flex-direction:column;gap:6px}
+.bring b{font-family:var(--display);font-size:1.2rem;font-weight:600;line-height:1.2}
+.bring span{font-size:1rem;color:var(--muted);line-height:1.5}
+@media (max-width:820px){.bring{grid-template-columns:1fr}}
+.contact{background:var(--accent);color:var(--onaccent);border-radius:14px;padding:clamp(24px,4vw,40px);display:flex;flex-wrap:wrap;gap:20px 40px;align-items:center;justify-content:space-between}
+.contact h3{font-size:clamp(1.5rem,3vw,2.2rem);font-weight:600;max-width:20ch}
+.contact .rows{display:flex;flex-direction:column;gap:10px;font-family:var(--display)}
+.contact .row{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.contact .row .mono{opacity:.75;width:4.6rem}
+.contact .row a,.contact .row code{color:var(--onaccent);font-family:var(--display);font-size:1.1rem}
+.copy{font-family:var(--mono);font-size:.82rem;padding:4px 9px;border-radius:5px;border:1px solid currentColor;background:transparent;color:var(--onaccent);cursor:pointer}
+footer{max-width:var(--wrap);margin:0 auto;padding-block:26px 40px;border-top:1px solid var(--line);font-family:var(--display);font-size:.86rem;color:var(--muted);display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
+
+/* lightbox */
+dialog.lb{border:0;padding:0;background:transparent;max-width:min(96vw,1600px);max-height:92vh}
+dialog.lb::backdrop{background:rgba(8,12,10,.86)}
+dialog.lb img{max-height:86vh;width:auto;margin:0 auto;border-radius:8px}
+dialog.lb p{color:#dfe6e1;font-family:var(--display);font-size:.9rem;text-align:center;margin-top:10px}
+dialog.lb button{position:fixed;top:14px;right:16px;font-family:var(--display);font-size:.95rem;background:#fff;color:#111;border:0;border-radius:99px;padding:8px 14px;cursor:pointer}
+
+.rise{animation:rise .8s cubic-bezier(.2,.7,.2,1) both}
+.rise.d2{animation-delay:.08s}.rise.d3{animation-delay:.16s}.rise.d4{animation-delay:.24s}
+@keyframes rise{from{transform:translateY(14px)}to{transform:none}}
+
+/* ══ Layout concept: cream and near-black bands, one grotesk at regular weight, hairline rows with arrows,
+   numbered case pagination, and a dark strip down the right edge with rotated links ══ */
+:root{
+  --bg:#F3F0E6; --surface:#FBF9F3; --surface-2:#E8E4D6; --ink:#242320; --muted:#6B675E; --line:#D3CEBF;
+  --accent:#2C6A4D; --accent-soft:#DCE7DD; --amber:#A8741F; --amber-soft:#EADBBB; --onaccent:#F3F0E6;
+  --dark:#242320; --dark-2:#1D1C1A; --grey:#A8A59D; --rule-dark:#3B3933;
+  --serif:"Schibsted Grotesk","Helvetica Neue",Arial,sans-serif;
+  --mono:"Schibsted Grotesk","Helvetica Neue",Arial,sans-serif;
+  --shadow:none; --wrap:1240px; --gut:clamp(20px,5vw,72px); --rail:72px;
+  --band:max(var(--gut),calc((100% - var(--wrap))/2));
+  color-scheme:light;
+}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--display);font-weight:400;font-size:18px;line-height:1.6;padding-inline:0;padding-right:var(--rail)}
+h1,h2,h3,h4{font-weight:500;letter-spacing:-.025em}
+.mono{font-weight:400}
+
+/* dark strip */
+.side{position:fixed;top:0;right:0;bottom:0;width:var(--rail);background:var(--dark);color:var(--bg);display:flex;flex-direction:column;align-items:center;justify-content:space-between;padding:26px 0;z-index:40}
+.side .v{writing-mode:vertical-rl;text-orientation:sideways;transform:rotate(180deg);display:inline-flex;align-items:center;gap:10px;font-size:1rem;color:var(--bg);text-decoration:none;white-space:nowrap;line-height:1}
+.side .v:hover{text-decoration:underline;text-underline-offset:4px}
+.hb{background:none;border:0;padding:12px 6px;cursor:pointer;display:flex;flex-direction:column;gap:6px}
+.hb i{display:block;width:26px;height:2px;background:var(--bg)}
+.menu{position:fixed;top:0;bottom:0;left:0;right:var(--rail);background:var(--dark);color:var(--bg);z-index:35;padding:clamp(96px,16vh,160px) var(--gut) 40px;display:flex;flex-direction:column;overflow:auto}
+.menu[hidden]{display:none!important}
+.menu a{display:flex;justify-content:space-between;align-items:baseline;gap:20px;font-size:clamp(1.8rem,4.5vw,3.4rem);letter-spacing:-.03em;color:var(--bg);text-decoration:none;padding:14px 0;border-bottom:1px solid var(--rule-dark)}
+.menu a small{font-size:1rem;letter-spacing:0;color:var(--grey)}
+.menu a:hover{color:#fff}
+.topbar{position:absolute;top:env(safe-area-inset-top,0px);left:0;right:var(--rail);z-index:30;max-width:none;margin:0;padding:24px var(--gut);display:block;background:none;backdrop-filter:none;border:0;pointer-events:none;mix-blend-mode:difference}
+.topbar .brand{pointer-events:auto;color:#fff;font-weight:500;font-size:1.1rem;letter-spacing:-.01em}
+.brand i,.topnav{display:none}
+
+.btn{display:inline-flex;align-items:center;gap:10px;border:1px solid currentColor;padding:13px 20px;text-decoration:none;font-size:1rem;color:inherit;background:none;transition:background .2s,color .2s}
+.btn:hover{background:var(--bg);color:var(--ink)}
+
+/* hero */
+.hero{max-width:none;margin:0;background:var(--dark);color:var(--bg);padding:clamp(130px,22vh,230px) var(--band) clamp(48px,8vh,80px)}
+.hero .mono{color:var(--grey);font-size:1.1rem}
+.hero h1{font-size:clamp(2.4rem,5.6vw,5rem);font-weight:400;letter-spacing:-.03em;line-height:1.05;max-width:17ch;margin-top:20px}
+.hero h1 em{font-style:italic;font-weight:600;color:var(--grey)}
+.hero .lede{color:#D8D4C7;font-size:clamp(1.05rem,1.5vw,1.3rem);max-width:56ch}
+.cta{display:flex;flex-wrap:wrap;gap:12px;margin-top:32px;color:var(--bg)}
+.facts{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:0 28px;margin-top:56px}
+.facts li{border:0;border-top:1px solid #56534A;border-radius:0;background:none;padding:12px 0 0;font-size:1rem;color:#D8D4C7}
+
+/* statement */
+.statement{background:var(--dark);padding:clamp(56px,10vw,128px) var(--band);border-top:1px solid var(--rule-dark)}
+.statement p{font-size:clamp(1.7rem,3.7vw,3.2rem);line-height:1.2;letter-spacing:-.02em;color:#85827A;max-width:30em}
+.statement b{font-style:italic;font-weight:600;color:#D8D4C7}
+
+/* route as hairline rows */
+.route{max-width:none;margin:0;padding:clamp(56px,9vw,112px) var(--band)}
+.route-head h2{font-size:clamp(2rem,4vw,3.2rem);font-weight:400}
+.stops{grid-template-columns:1fr;gap:0;border-top:1px solid var(--ink);margin-top:8px}
+.stop::before,.stop:last-child::before{display:none}
+.stop .dot{display:none}
+.stop a{display:grid;grid-template-columns:96px 118px minmax(0,1fr) minmax(0,1.5fr) 28px;align-items:center;gap:0 24px;padding:16px 0;border-bottom:1px solid var(--ink);color:var(--ink)}
+.stop a::after{content:"\2192";justify-self:end;font-size:1.4rem;line-height:1;transition:transform .2s}
+.stop a:hover::after{transform:translateX(6px)}
+.stop .th{border-radius:0;width:96px;grid-row:auto;grid-column:auto}
+.stop .th.txt{padding:6px 8px}
+.stop .th.txt span{font-size:.6rem;line-height:1.2}
+.stop .yr,.stop .nm,.stop .ln{grid-column:auto}
+.stop .yr{font-size:.95rem}
+.stop .nm{font-size:1.5rem;font-weight:500;letter-spacing:-.02em;line-height:1.15}
+.stop .ln{font-size:1rem;line-height:1.4}
+@media (max-width:1000px){
+  .stops{gap:0}
+  .stop a{grid-template-columns:88px minmax(0,1fr) 24px;gap:2px 16px}
+  .stop .th{grid-row:1/4;grid-column:1;width:88px}
+  .stop .yr,.stop .nm,.stop .ln{grid-column:2}
+  .stop a::after{grid-column:3;grid-row:1/4;align-self:center}
+}
+
+/* bands */
+.book{display:block;max-width:none;margin:0;padding:0}
+.rail{display:none}
+.story{gap:0}
+.act-open,.chapter,.interlude,.epi{padding:clamp(56px,9vw,112px) var(--band);border-radius:0}
+.act-open{border-top:1px solid var(--ink)}
+.act-open h2{font-size:clamp(2.4rem,6vw,5rem);font-weight:400;letter-spacing:-.035em}
+.act-open .mono{color:var(--muted)}
+.act-open p{color:var(--muted);font-size:1.15rem}
+#babylyx{background:var(--surface-2)}
+.act-open.code,.chapter.code,.interlude{--bg:#242320;--surface:#2D2B27;--surface-2:#37352F;--ink:#F3F0E6;--muted:#A8A59D;--line:#46433B;--accent:#93CDAB;--accent-soft:#2F4A3B;--amber:#E2B360;--amber-soft:#463A22;background:var(--bg);color:var(--ink)}
+.act-open.code,.chapter.code{border-top:1px solid var(--rule-dark)}
+#nsr{--bg:#1D1C1A}
+.interlude{border-top:1px solid var(--rule-dark)}
+.interlude h3{font-weight:400;font-size:clamp(2rem,4.4vw,3.6rem)}
+.interlude .mono{color:var(--grey)}
+.interlude p{color:#D8D4C7}
+.act-open.code .mono,.act-open .mono{font-weight:400}
+
+/* chapters */
+.chapter .ch-kicker,.chapter.code .ch-kicker{gap:12px}
+.chapter .ch-kicker .num,.chapter.code .ch-kicker .num{background:none;padding:0;border-radius:0;font-size:1rem;font-weight:400;color:var(--ink)}
+.ch-kicker .ln{display:inline-block;width:56px;height:1px;background:var(--muted)}
+.ch-kicker .mono{color:var(--muted);margin-left:8px}
+.chapter h3.title{font-size:clamp(2.6rem,7vw,6rem);font-weight:400;letter-spacing:-.035em;margin-top:16px}
+.chapter .sub{font-size:1.3rem;max-width:50ch}
+.meta{border-color:var(--ink)}
+.meta dt{font-size:.9rem}
+.meta dd{font-size:1.05rem}
+.prose h4{font-weight:500}
+.lesson{border-left:1px solid var(--ink);font-size:1.15rem}
+.lesson b{font-weight:600}
+
+/* flat surfaces */
+.shot,.gal img,.card,.client,.kit-g,.pipe,.flowbox,.poster,.node,.stack li,.tool svg,dialog.lb img,figure img{border-radius:0}
+.shot{box-shadow:none}
+.stack li{background:none;border-color:currentColor;color:var(--ink)}
+.did li::before,.chapter.code .did li::before{height:1px}
+.tally b{font-weight:400;font-size:2.6rem}
+.client{background:none;border-color:var(--ink)}
+.client h4{font-weight:500}
+.kit-g{background:none;border-color:var(--ink)}
+.tool svg{background:none;border:1px solid var(--line)}
+.findings li{border-top:1px solid var(--ink)}
+.results .card,.pipe,.flowbox{background:none;border-color:var(--ink)}
+.node{background:none}
+.node.store{background:var(--accent-soft);border-color:transparent}
+.copy{border-radius:0;font-family:var(--display);font-size:.9rem;padding:6px 12px}
+
+/* epilogue and footer */
+.epi{border-top:1px solid var(--ink)}
+.epi h2{font-size:clamp(2.4rem,6vw,5rem);font-weight:400;letter-spacing:-.035em}
+.bring li{border-top:1px solid var(--ink);padding-top:16px}
+.bring b{font-weight:500;font-size:1.3rem}
+.contact{background:var(--dark);color:var(--bg);--onaccent:var(--bg);border-radius:0;padding:clamp(28px,6vw,72px)}
+.contact h3{font-size:clamp(1.8rem,4vw,3.2rem);font-weight:400;max-width:16ch}
+.contact .row .mono{opacity:1;color:var(--grey)}
+footer{max-width:none;margin:0;background:var(--dark);color:var(--grey);border:0;padding:28px var(--band)}
+
+@media (max-width:860px){
+  body{padding-right:0;padding-bottom:calc(56px + env(safe-area-inset-bottom,0px))}
+  .side{top:auto;left:0;width:auto;height:calc(56px + env(safe-area-inset-bottom,0px));flex-direction:row;padding:0 var(--gut) env(safe-area-inset-bottom,0px)}
+  .side .v{writing-mode:horizontal-tb;text-orientation:mixed;transform:none}
+  .topbar{right:0}
+  .menu{right:0;bottom:calc(56px + env(safe-area-inset-bottom,0px))}
+}
+@media (max-width:600px){.ch-kicker .mono{margin-left:0;flex-basis:100%}}
+@media (prefers-reduced-motion:reduce){.stop a::after,.btn{transition:none}}
+
+.part{font-family:var(--mono);font-size:.72rem;letter-spacing:.06em;text-transform:uppercase;border:1px solid var(--amber);color:var(--amber);padding:2px 8px}
+.part.c{border-color:var(--accent);color:var(--accent)}
+.aud{list-style:none;padding:0;margin:8px 0 0;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:24px}
+.aud>li{border-top:1px solid var(--ink);padding-top:14px}
+.aud .lang{font-family:var(--mono);font-size:.75rem;letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
+.aud h4{margin:6px 0 8px;font-size:1.2rem}
+.aud p{margin:0 0 12px}
+@media (max-width:820px){.aud{grid-template-columns:1fr}}
+.stop .th.logo img{object-fit:contain;padding:4px;background:#fff}
+.exlogo{width:min(420px,80%);height:auto;margin:4px 0 8px}
+</style>
+</head>
+<body>
+
+<header class="topbar">
+  <a class="brand" href="#top"><i>SG</i>Simon Gorny</a>
+  <nav class="topnav" aria-label="Sections">
+    <a href="#act-web">Websites</a>
+    <a href="#act-code">Software</a>
+    <a href="#contact">Contact</a>
+  </nav>
+</header>
+
+<aside class="side" aria-label="Quick links">
+  <a class="v" href="#contact"><span aria-hidden="true">&rarr;</span> Say hello</a>
+  <button class="hb" id="menubtn" type="button" aria-label="Menu" aria-expanded="false" aria-controls="menu"><i></i><i></i><i></i></button>
+  <a class="v" href="https://github.com/Peppino9" target="_blank" rel="noopener"><span aria-hidden="true">&rarr;</span> See the code on GitHub</a>
+</aside>
+<nav class="menu" id="menu" aria-label="Sections" hidden>
+  <a href="#route">The route so far <small>Overview</small></a>
+  <a href="#act-web">Selling things online <small>Sansara, BabyLyx, Ekonex, 30+ sites</small></a>
+  <a href="#act-code">Writing the software <small>FutQuiz, Avfallskompassen, ALMA</small></a>
+  <a href="#am">AM Mättjänst <small>Back to websites</small></a>
+  <a href="#contact">What I bring <small>Contact</small></a>
+</nav>
+
+<main id="top">
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs><symbol id="i-globe" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18"/></symbol><symbol id="i-layout" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 9v12"/></symbol><symbol id="i-cart" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M3 4h2l2.4 11h11L21 7H6.2"/><circle cx="9" cy="20" r="1.4"/><circle cx="17" cy="20" r="1.4"/></symbol><symbol id="i-card" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="5" width="20" height="14" rx="2"/><path d="M2 10h20M6 15h4"/></symbol><symbol id="i-parcel" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M3 7.5 12 3l9 4.5v9L12 21l-9-4.5z"/><path d="M3 7.5 12 12l9-4.5M12 12v9"/></symbol><symbol id="i-chart" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20V11M10 20V5M16 20v-7M2 20h20"/></symbol><symbol id="i-target" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1.2"/></symbol><symbol id="i-megaphone" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M3 10.5v3a1 1 0 0 0 1 1h3l6 4.5v-14L7 9.5H4a1 1 0 0 0-1 1z"/><path d="M17 9a4 4 0 0 1 0 6"/></symbol><symbol id="i-mail" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></symbol><symbol id="i-image" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="2"/><circle cx="8.5" cy="9.5" r="1.5"/><path d="m21 16-5-5-9 9"/></symbol><symbol id="i-pen" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"/><path d="M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4z"/></symbol><symbol id="i-code" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="m8 6-6 6 6 6M16 6l6 6-6 6"/></symbol><symbol id="i-database" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="5" rx="8" ry="3"/><path d="M4 5v14c0 1.7 3.6 3 8 3s8-1.3 8-3V5M4 12c0 1.7 3.6 3 8 3s8-1.3 8-3"/></symbol><symbol id="i-server" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="7" rx="1.5"/><rect x="3" y="13" width="18" height="7" rx="1.5"/><path d="M7 7.5h.01M7 16.5h.01"/></symbol><symbol id="i-check" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></symbol><symbol id="i-cloud" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M7 18a5 5 0 0 1-.6-9.96A6 6 0 0 1 18 9.2 4.5 4.5 0 0 1 17.5 18z"/></symbol><symbol id="i-spark" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l1.8 5.2L19 10l-5.2 1.8L12 17l-1.8-5.2L5 10l5.2-1.8zM19 16l.8 2.2L22 19l-2.2.8L19 22l-.8-2.2L16 19l2.2-.8z"/></symbol><symbol id="i-search" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><path d="m21 21-5-5"/></symbol><symbol id="i-lock" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></symbol><symbol id="i-layers" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="m12 3 9 5-9 5-9-5z"/><path d="m3 13 9 5 9-5"/></symbol><symbol id="i-terminal" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="m7 9 3 3-3 3M13 15h4"/></symbol><symbol id="i-branch" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="6" cy="18" r="2.5"/><circle cx="6" cy="6" r="2.5"/><circle cx="18" cy="8" r="2.5"/><path d="M6 8.5v7M18 10.5c0 4-5 4-9.5 6"/></symbol><symbol id="i-users" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="8" r="3.5"/><path d="M2.5 20a6.5 6.5 0 0 1 13 0"/><path d="M16 4.5a3.5 3.5 0 0 1 0 7M18 14a6.5 6.5 0 0 1 3.5 6"/></symbol><symbol id="i-canvas" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="m3 16 5-5 4 4 3-3 6 6"/></symbol><symbol id="i-box" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="7" width="18" height="13" rx="1.5"/><path d="M3 11h18M9 4h6v3H9z"/></symbol><symbol id="i-doc" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M6 3h8l4 4v14H6z"/><path d="M14 3v4h4M9 12h6M9 16h6"/></symbol><symbol id="i-bolt" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M13 2 4 14h7l-1 8 9-12h-7z"/></symbol><symbol id="i-chat" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5h16v11H9l-5 4z"/></symbol><symbol id="i-calendar" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="16" rx="2"/><path d="M3 10h18M8 3v4M16 3v4"/></symbol><symbol id="i-palette" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a9 9 0 1 0 0 18c1.1 0 1.5-.8 1.2-1.6-.4-1.1.3-2.4 1.6-2.4H17a4 4 0 0 0 4-4c0-5.5-4-10-9-10z"/><circle cx="7.5" cy="11" r="1"/><circle cx="10" cy="7" r="1"/><circle cx="15" cy="7.5" r="1"/></symbol></defs></svg>
+  <section class="hero">
+    <p class="mono rise">Portfolio, Malmö 2026</p>
+    <h1 class="rise d2">From bamboo toothbrushes to <em>an AI that reads infrastructure documentation.</em></h1>
+    <p class="lede rise d3">I'm Simon Gorny, a web developer with a new degree in Data and Information Science. I started out building online shops for my own brand and for local businesses. Those shops made me want to understand the code under the page builder. This portfolio tells that story, one project at a time.</p>
+    <div class="cta rise d4"><a class="btn" href="#route">See the route</a><a class="btn" href="#contact">Get in touch</a></div>
+    <ul class="facts rise d4">
+      <li>Hyllie, Malmö</li>
+      <li>BSc Data &amp; Information Science, Malmö University, 2026</li>
+      <li>Swedish, English and Polish</li>
+    </ul>
+  </section>
+
+  <section class="route" id="route" aria-labelledby="route-h">
+    <div class="route-head">
+      <h2 id="route-h">The route so far</h2>
+      <div class="route-legend"><span>Websites &amp; e-commerce</span><span class="c">Software</span></div>
+    </div>
+    <ol class="stops">
+      <li class="stop"><a href="#sansara"><span class="dot"></span><span class="th"><img src="img/sa_toothbrush.jpg" alt="" loading="lazy"></span><span class="yr">Own brand</span><span class="nm">Sansara</span><span class="ln">A sustainable web shop I co-founded</span></a></li>
+      <li class="stop"><a href="#babylyx"><span class="dot"></span><span class="th"><img src="img/bb_4.jpg" alt="" loading="lazy"></span><span class="yr">2020</span><span class="nm">BabyLyx</span><span class="ln">A client's shop for personalised baby gifts</span></a></li>
+      <li class="stop"><a href="#ekonex"><span class="dot"></span><span class="th logo"><img src="img/ekonex_logo.png" alt="" loading="lazy"></span><span class="yr">2026</span><span class="nm">Ekonex</span><span class="ln">One company, three audiences found in search</span></a></li>
+      <li class="stop"><a href="#clients"><span class="dot"></span><span class="th txt"><span>Medicwise<br>Curbside<br>Saga C4<br>Homejoy<br>Nordiska<br>+ many more</span></span><span class="yr">2020–2026</span><span class="nm">30+ sites</span><span class="ln">Salons, staffing, food trucks, heat pumps</span></a></li>
+      <li class="stop code"><a href="#futquiz"><span class="dot"></span><span class="th"><img src="img/fq_16.jpg" alt="" loading="lazy"></span><span class="yr">2024</span><span class="nm">FutQuiz</span><span class="ln">My first team web app, in Flask</span></a></li>
+      <li class="stop code"><a href="#nsr"><span class="dot"></span><span class="th"><img src="img/nsr_planning.jpg" alt="" loading="lazy"></span><span class="yr">2025</span><span class="nm">Avfallskompassen</span><span class="ln">A waste-room planner for NSR</span></a></li>
+      <li class="stop code"><a href="#alma"><span class="dot"></span><span class="th"><img src="img/alma_ui.jpg" alt="" loading="lazy"></span><span class="yr">2026</span><span class="nm">ALMA</span><span class="ln">My thesis: a RAG assistant with Rejlers</span></a></li>
+      <li class="stop"><a href="#am"><span class="dot"></span><span class="th"><img src="img/am_home.jpg" alt="" loading="lazy"></span><span class="yr">2026</span><span class="nm">AM Mättjänst</span><span class="ln">Back to websites, in code this time</span></a></li>
+    </ol>
+  </section>
+
+  <section class="statement" aria-label="Summary">
+    <p>30+ websites for paying clients, a team app built with four others, a system for a real client and a thesis <b>tested with real users.</b></p>
+  </section>
+
+  <div class="book">
+
+    <div class="story">
+
+      <!-- ═════════ ACT ONE ═════════ -->
+      <header class="act-open" id="act-web">
+        <div>
+          <p class="mono">Part one</p>
+          <h2>Selling things online.</h2>
+        </div>
+        <p>Before I wrote much code, I built WordPress shops that had to take real payments, ship real parcels and bring in real customers. It taught me that a website is a business tool first and a design second.</p>
+      </header>
+
+      <!-- Sansara -->
+      <article class="chapter" id="sansara">
+        <div>
+          <div class="ch-kicker"><span class="num">Chapter 1</span><i class="ln"></i><span class="part ">Websites</span><span class="mono">Own brand, e-commerce</span></div>
+          <h3 class="title">Sansara</h3>
+          <p class="sub">A brand for sustainable everyday products, where I was responsible for everything behind the shop.</p>
+        </div>
+        <dl class="meta">
+          <div><dt>Role</dt><dd>Co-founder, web &amp; marketing</dd></div>
+          <div><dt>Where</dt><dd>Hässleholm</dd></div>
+          <div><dt>Type</dt><dd>WooCommerce web shop</dd></div>
+          <div><dt>Site</dt><dd>sansara.se</dd></div>
+        </dl>
+
+        <div class="gal gal-sansara">
+          <button class="zoom a" data-cap="Reusable microfibre make-up pads with Sansara labels"><img src="img/sa_pads.jpg" alt="Row of reusable microfibre make-up pads in black, blue, white and orange, each with a Sansara label"></button>
+          <button class="zoom b" data-cap="Bamboo toothbrushes with white and charcoal bristles"><img src="img/sa_toothbrush.jpg" alt="Two bamboo toothbrushes engraved with the Sansara logo leaning against white coral"></button>
+          <button class="zoom c" data-cap="Pad holder in bamboo with the engraved endless-knot logo"><img src="img/sa_box_snow.jpg" alt="Round bamboo holder for make-up pads, engraved with the Sansara knot, standing in snow"></button>
+          <button class="zoom d" data-cap="Bamboo hairbrush and linen pouch"><img src="img/sa_brush.jpg" alt="Bamboo hairbrush with wooden pins next to a linen pouch printed with the Sansara logo"></button>
+          <button class="zoom e" data-cap="Kraft packaging: “Our planet matters”"><img src="img/sa_pad_pack.jpg" alt="Kraft box printed Our planet matters with a mustard-coloured reusable microfibre pad"></button>
+        </div>
+
+        <div class="two">
+          <div class="prose">
+            <p>Sansara sold bamboo toothbrushes, bamboo hairbrushes, cotton swabs, reusable microfibre pads and steel water bottles. The printed side of every toothbrush box carries the brand's vision: <em>“as children of the planet we want to create sustainable solutions without compromising with our own and the future generations' environment.”</em></p>
+            <p>As a co-founder I did not just build the website. I set up the shop, connected payments and shipping, ran the ads and made the content.</p>
+            <h4>What I built and ran</h4>
+            <ul class="did">
+              <li>The web shop in WordPress, Elementor and WooCommerce, with Klarna at checkout.</li>
+              <li>An integration with the PostNord API that updates customers on their order status and sends them the shipping number.</li>
+              <li>Email automation for order and customer flows.</li>
+              <li>Google Analytics and Google Ads, Facebook ads and the social media accounts.</li>
+              <li>Content and graphics in Photoshop and Illustrator, including campaign graphics like the one shown here.</li>
+            </ul>
+          </div>
+          <figure>
+            <div class="poster" role="img" aria-label="Sansara campaign poster: be sustainable, repeated three times, visit sansara.se, it's easy.">
+              <div>
+                <div class="top"><img src="img/sa_logo.png" alt=""></div>
+                <div style="margin-top:22px">
+                  <div class="bs">be sustainable</div>
+                  <div class="bs">be sustainable</div>
+                  <div class="bs">be sustainable</div>
+                </div>
+                <div class="v">visit <span>sansara.se</span></div>
+              </div>
+              <div class="foot"><small>www.sansara.se</small><b>it's easy.</b></div>
+            </div>
+            <figcaption>The “be sustainable” campaign, rebuilt in HTML from the Illustrator file.</figcaption>
+          </figure>
+        </div>
+
+        <div class="flowbox">
+          <h4>The shipping integration, step by step</h4>
+          <ol class="flow">
+            <li><div class="k">Checkout</div><div class="v">Customer pays</div><div class="d">WooCommerce order, paid with Klarna.</div></li>
+            <li><div class="k">PostNord API</div><div class="v">Parcel gets a shipping number</div><div class="d">The shop talks to PostNord instead of someone copying numbers by hand.</div></li>
+            <li><div class="k">Email</div><div class="v">Customer gets the order status</div><div class="d">Automated mail with the order status.</div></li>
+            <li><div class="k">Status</div><div class="v">Order status stays current</div><div class="d">The customer is kept updated as the order moves.</div></li>
+          </ol>
+        </div>
+
+        <div class="shots2">
+          <figure><button class="zoom" data-cap="A delivery of bamboo toothbrushes in their printed kraft boxes"><img src="img/sa_stock_tb.jpg" alt="Large carton filled with boxed Sansara bamboo toothbrushes" style="border-radius:8px;aspect-ratio:4/3;object-fit:cover"></button><figcaption>Stock day: toothbrush boxes printed with the vision text and eco labels.</figcaption></figure>
+          <figure><button class="zoom" data-cap="Pad holders in bamboo, packed in printed kraft boxes"><img src="img/sa_stock_boxes.jpg" alt="Carton of kraft boxes printed with the Sansara logo and one bamboo pad holder on top" style="border-radius:8px;aspect-ratio:4/3;object-fit:cover"></button><figcaption>The packaging was part of the brand as much as the website was.</figcaption></figure>
+        </div>
+
+        <div class="kit-wrap"><p class="kit-h">Toolkit</p><div class="kit"><div class="kit-g"><h5>Shop</h5><ul><li class="tool"><svg aria-hidden="true"><use href="#i-globe"/></svg><span>WordPress<small>The site itself</small></span></li><li class="tool"><svg aria-hidden="true"><use href="#i-layout"/></svg><span>Elementor<small>Page layouts</small></span></li><li class="tool"><svg aria-hidden="true"><use href="#i-cart"/></svg><span>WooCommerce<small>Products and orders</small></span></li></ul></div><div class="kit-g"><h5>Payments &amp; shipping</h5><ul><li class="tool"><svg aria-hidden="true"><use href="#i-card"/></svg><span>Klarna<small>Checkout</small></span></li><li class="tool"><svg aria-hidden="true"><use href="#i-parcel"/></svg><span>PostNord API<small>Tracking numbers</small></span></li></ul></div><div class="kit-g"><h5>Marketing</h5><ul><li class="tool"><svg aria-hidden="true"><use href="#i-chart"/></svg><span>Google Analytics<small>Traffic and sales</small></span></li><li class="tool"><svg aria-hidden="true"><use href="#i-target"/></svg><span>Google Ads<small>Search ads</small></span></li><li class="tool"><svg aria-hidden="true"><use href="#i-megaphone"/></svg><span>Facebook Ads<small>Social campaigns</small></span></li><li class="tool"><svg aria-hidden="true"><use href="#i-mail"/></svg><span>Email automation<small>Order and customer mail</small></span></li></ul></div><div class="kit-g"><h5>Content</h5><ul><li class="tool"><svg aria-hidden="true"><use href="#i-image"/></svg><span>Photoshop<small>Product photos</small></span></li><li class="tool"><svg aria-hidden="true"><use href="#i-pen"/></svg><span>Illustrator<small>Campaign graphics</small></span></li></ul></div></div></div>
+        <p class="lesson"><b>What it taught me</b>Owning the whole chain, from the ad to the parcel, showed me that the steps after checkout (payment, shipping, updates) matter as much as the homepage.</p>
+      </article>
+
+      <!-- BabyLyx -->
+      <article class="chapter" id="babylyx">
+        <div>
+          <div class="ch-kicker"><span class="num">Chapter 2</span><i class="ln"></i><span class="part ">Websites</span><span class="mono">Client project, e-commerce, 2020</span></div>
+          <h3 class="title">BabyLyx</h3>
+          <p class="sub">A shop for somebody else's business, where the products carry a name and the photos have to sell them.</p>
+        </div>
+        <dl class="meta">
+          <div><dt>Role</dt><dd>Web developer</dd></div>
+          <div><dt>Where</dt><dd>Malmö</dd></div>
+          <div><dt>Year</dt><dd>2020</dd></div>
+          <div><dt>Site</dt><dd>babylyx.com</dd></div>
+        </dl>
+        <div class="prose">
+            <p>BabyLyx sells products for newborns and small children. Pacifier holders are the signature product, next to blankets, teddies and other gifts. Much of the range is personalised: a child's name on a holder, a bodysuit, a mug or a Christmas bauble.</p>
+            <p>Here I was building for a client instead of for myself. The owner knows the products and the customers; my job was to turn that into a store that works without them having to think about the technology. I reused what I had learned on Sansara and built the store on WooCommerce with Klarna at checkout and the same PostNord integration for order status and shipping numbers.</p>
+            <h4>What I delivered</h4>
+            <ul class="did">
+              <li>A WooCommerce shop with Klarna payments.</li>
+              <li>PostNord API integration that updates customers on order status and sends the shipping number.</li>
+              <li>A product catalogue where the photography does the selling, with the client's own images.</li>
+            </ul>
+          </div>
+
+        <div class="gal gal-bb">
+            <button class="zoom t" data-cap="Personalised pacifier holders"><img src="img/bb_10.jpg" alt="Hand holding three beaded pacifier holders with name letters"></button>
+            <button class="zoom" data-cap="Personalised mugs"><img src="img/bb_4.jpg" alt="White mug with a gold name print and a small BabyLyx tag"></button>
+            <button class="zoom" data-cap="Embroidered bodysuit"><img src="img/bb_7.jpg" alt="White quilted baby bodysuit embroidered with a name in gold"></button>
+            <button class="zoom t" data-cap="Gift box with a knitted bunny"><img src="img/bb_13.jpg" alt="Open white gift box with a knitted bunny and folded baby clothes"></button>
+            <button class="zoom" data-cap="Personalised Christmas baubles"><img src="img/bb_16.jpg" alt="Two silver Christmas baubles with red names and pine cones"></button>
+            <button class="zoom" data-cap="Cake topper"><img src="img/bb_9.jpg" alt="Glitter cake topper reading Baby Girl"></button>
+          </div>
+        <div class="kit-wrap"><p class="kit-h">Toolkit</p><div class="kit"><div class="kit-g"><h5>Shop</h5><ul><li class="tool"><svg aria-hidden="true"><use href="#i-globe"/></svg><span>WordPress<small>The site itself</small></span></li><li class="tool"><svg aria-hidden="true"><use href="#i-cart"/></svg><span>WooCommerce<small>Products and orders</small></span></li></ul></div><div class="kit-g"><h5>Payments &amp; shipping</h5><ul><li class="tool"><svg aria-hidden="true"><use href="#i-card"/></svg><span>Klarna<small>Checkout</small></span></li><li class="tool"><svg aria-hidden="true"><use href="#i-parcel"/></svg><span>PostNord API<small>Tracking numbers</small></span></li></ul></div></div></div>
+        <p class="lesson"><b>What it taught me</b>A client wants a shop they can run on their own. The best thing I could build was something that keeps working after I hand it over.</p>
+      </article>
+
+      <!-- Ekonex -->
+      <article class="chapter" id="ekonex">
+        <div>
+          <div class="ch-kicker"><span class="num">Chapter 3</span><i class="ln"></i><span class="part">Websites</span><span class="mono">Client project, 2026</span></div>
+          <h3 class="title">Ekonex: one company, three audiences</h3>
+          <p class="sub">Not the loudest story in this portfolio, but a site that reaches the people the company needs, and they see the results.</p>
+        </div>
+        <img class="exlogo" src="img/ekonex_logo.png" alt="Ekonex HB logo: a yellow car outline over a blue wrench" width="420">
+        <dl class="meta">
+          <div><dt>Client</dt><dd>Ekonex Bildemontering</dd></div>
+          <div><dt>Where</dt><dd>Hässleholm, 2026</dd></div>
+          <div><dt>Languages</dt><dd>Swedish, Polish, German</dd></div>
+          <div><dt>Site</dt><dd><a href="https://ekonex.se" target="_blank" rel="noopener">ekonex.se</a></dd></div>
+        </dl>
+        <div class="prose">
+          <p>Ekonex is an authorised car recycler that also sells used cars and parts, refills LPG and fits tyres. Different people need different things from that one company, so the three language versions of the site are not translations of each other. Each is built to be found by its own audience, with both SEO and GEO in mind. SEO gets the site found in search results. GEO, Generative Engine Optimization, makes the content easy for AI assistants to understand and recommend when they answer a question.</p>
+        </div>
+        <ul class="aud">
+          <li><span class="lang">Swedish</span><h4>Local customers</h4><p>The Swedish site shows everything the company does and is built to rank locally. It is found when people search for gas refills in and around Hässleholm.</p><ul class="stack"><li>gasol Hässleholm</li><li>gasol påfyllning Skåne</li></ul></li>
+          <li><span class="lang">Polish</span><h4>Parts dealers from Poland</h4><p>Polish car-part dealers travel to Sweden to buy parts. The Polish version targets them organically, so Ekonex shows up when they search for car parts in Sweden in their own language.</p><ul class="stack"><li>części samochodowe w Szwecji</li></ul></li>
+          <li><span class="lang">German</span><h4>Campers who need LPG</h4><p>Ekonex sells LPG, and German campers visiting Sweden need refills. The German version puts the company in front of them when they search for LPG gas in Sweden.</p><ul class="stack"><li>LPG Gas Schweden</li></ul></li>
+        </ul>
+        <p class="lesson"><b>What it taught me</b>A website is not one product for everyone. Start from who is searching and what they type, and each version of the site can do its own job.</p>
+      </article>
+
+      <!-- Clients -->
+      <article class="chapter" id="clients">
+        <div>
+          <div class="ch-kicker"><span class="num">Chapter 4</span><i class="ln"></i><span class="part ">Websites</span><span class="mono">Client work, a selection</span></div>
+          <h3 class="title">30+ websites, and counting</h3>
+          <p class="sub">Since 2020 I have built more than 30 websites. Here are ten of them: a food truck, a staffing firm, a hair salon, a CAD consultancy in Manchester, a lead-generation site in Dubai and more.</p>
+        </div>
+        <div class="tally" aria-label="Summary of website work">
+          <div><b>30+</b><span>websites built</span></div>
+          <div><b>2020–26</b><span>years of client work</span></div>
+          <div><b>Skåne to Dubai</b><span>via Stockholm and Manchester</span></div>
+        </div>
+        <div class="prose">
+          <p>Each business needed something different, so the sites got more technical over time. Some were information sites that simply had to look trustworthy and bring in calls. Others needed a job database, a booking system or several stores inside one website. That is where I started to push Elementor and Crocoblock past their defaults with custom tags, dynamic fields and modified elements.</p>
+        </div>
+        <ul class="clients">
+          <li class="client">
+            <div class="top"><h4>Medicwise</h4><span class="where">Nyköping, 2022</span></div>
+            <p>Staffing company for the healthcare sector.</p>
+            <p class="built">Job listings and a CV database of candidates, built with Crocoblock custom dynamic elements and fields.</p>
+            <ul class="stack"><li>Elementor</li><li>Crocoblock</li><li>Google tools</li></ul>
+          </li>
+          <li class="client">
+            <div class="top"><h4>Nordiska Värmepumpen</h4><span class="where">Stockholm, 2023</span></div>
+            <p>Information site for a heat pump company, with shops inside it.</p>
+            <p class="built">Crocoblock custom tags and modified elements to run several WooCommerce stores in the same website, plus email automation and the PostNord integration.</p>
+            <ul class="stack"><li>Elementor</li><li>Crocoblock</li><li>WooCommerce</li><li>PostNord API</li></ul>
+          </li>
+          <li class="client">
+            <div class="top"><h4>Homejoy</h4><span class="where">Hässleholm, 2022</span></div>
+            <p>Cleaning company.</p>
+            <p class="built">Company site with online booking through Zenbooker.</p>
+            <ul class="stack"><li>Elementor</li><li>Zenbooker</li></ul>
+          </li>
+          <li class="client">
+            <div class="top"><h4>CarCare</h4><span class="where">Kristianstad, 2021</span></div>
+            <p>All-inclusive car service on subscription. Washes, inspection and more are included depending on the plan.</p>
+            <p class="built">Information site that explains the plans.</p>
+            <ul class="stack"><li>Elementor</li></ul>
+          </li>
+          <li class="client">
+            <div class="top"><h4>Häckplantan</h4><span class="where">Hässleholm, 2022</span></div>
+            <p>Sells hedge plants and other plants.</p>
+            <p class="built">Information site for the nursery.</p>
+            <ul class="stack"><li>Elementor</li></ul>
+            <a class="site" href="https://hackplantan.se" target="_blank" rel="noopener">hackplantan.se</a>
+          </li>
+          <li class="client">
+            <div class="top"><h4>Saga C4</h4><span class="where">Kristianstad, 2024</span></div>
+            <p>Hair salon.</p>
+            <p class="built">Salon website.</p>
+            <ul class="stack"><li>Elementor</li></ul>
+            <a class="site" href="https://sagaboulevard.se/" target="_blank" rel="noopener">sagaboulevard.se</a>
+          </li>
+          <li class="client">
+            <div class="top"><h4>Debricks</h4><span class="where">Dubai, 2024</span></div>
+            <p>A site built to capture leads.</p>
+            <p class="built">WhatsApp contact, automatic emails and lead capture.</p>
+            <ul class="stack"><li>Elementor</li><li>Crocoblock</li><li>WhatsApp</li></ul>
+          </li>
+          <li class="client">
+            <div class="top"><h4>OC Design</h4><span class="where">Manchester</span></div>
+            <p>CAD services for industry and construction.</p>
+            <p class="built">Company site with email and contact flows.</p>
+            <ul class="stack"><li>Elementor</li></ul>
+          </li>
+          <li class="client">
+            <div class="top"><h4>Yazidi Books</h4><span class="where">Learning app</span></div>
+            <p>Landing page for a learning app.</p>
+            <p class="built">Built in React instead of a page builder.</p>
+            <ul class="stack"><li>React</li></ul>
+            <a class="site" href="https://yazidibooks.com" target="_blank" rel="noopener">yazidibooks.com</a>
+          </li>
+          <li class="client">
+            <div class="top"><h4>Curbside</h4><span class="where">Stockholm</span></div>
+            <p>Food truck company.</p>
+            <p class="built">Website for the food truck.</p>
+            <a class="site" href="https://curbside.se" target="_blank" rel="noopener">curbside.se</a>
+          </li>
+        </ul>
+        <div class="kit-wrap"><p class="kit-h">Toolkit</p><div class="kit"><div class="kit-g"><h5>Page building</h5><ul><li class="tool"><svg aria-hidden="true"><use href="#i-globe"/></svg><span>WordPress<small>Most client sites</small></span></li><li class="tool"><svg aria-hidden="true"><use href="#i-layout"/></svg><span>Elementor<small>Layouts</small></span></li><li class="tool"><svg aria-hidden="true"><use href="#i-layers"/></svg><span>Crocoblock<small>Dynamic fields and listings</small></span></li></ul></div><div class="kit-g"><h5>Commerce</h5><ul><li class="tool"><svg aria-hidden="true"><use href="#i-cart"/></svg><span>WooCommerce<small>Stores</small></span></li><li class="tool"><svg aria-hidden="true"><use href="#i-parcel"/></svg><span>PostNord API<small>Shipping updates</small></span></li></ul></div><div class="kit-g"><h5>Leads &amp; bookings</h5><ul><li class="tool"><svg aria-hidden="true"><use href="#i-calendar"/></svg><span>Zenbooker<small>Online booking</small></span></li><li class="tool"><svg aria-hidden="true"><use href="#i-chat"/></svg><span>WhatsApp<small>Contact button</small></span></li><li class="tool"><svg aria-hidden="true"><use href="#i-mail"/></svg><span>Email automation<small>Lead follow-up</small></span></li></ul></div><div class="kit-g"><h5>Code</h5><ul><li class="tool"><svg aria-hidden="true"><use href="#i-code"/></svg><span>React<small>Landing pages</small></span></li></ul></div></div></div>
+        <p class="lesson"><b>What it taught me</b>Every client brought a requirement the page builder could not quite handle. Each workaround got me a little closer to writing the code myself.</p>
+      </article>
+
+      <aside class="interlude" aria-label="Interlude">
+        <div>
+          <p class="mono">Interlude</p>
+          <h3>Where the page builder ran out</h3>
+        </div>
+        <div>
+          <p>Building a job database, running several stores in one site and tracking parcels through an API are not really page-builder problems. They are software problems. Wanting to understand what happens under the drag-and-drop is a big part of why I studied Data and Information Science at Malmö University.</p>
+          <p>Part two follows three projects from that degree. Each one is bigger than the last: a five-person web app, an eight-person system for a real client, and a thesis that put AI in front of real users.</p>
+        </div>
+      </aside>
+
+      <!-- ═════════ ACT TWO ═════════ -->
+      <header class="act-open code" id="act-code">
+        <div>
+          <p class="mono">Part two</p>
+          <h2>Writing the software.</h2>
+        </div>
+        <p>From Flask to React and Spring Boot to retrieval-augmented generation. Each project added a team, a client or a set of users to answer to.</p>
+      </header>
+
+      <!-- FutQuiz -->
+      <article class="chapter code" id="futquiz">
+        <div>
+          <div class="ch-kicker"><span class="num">Chapter 5</span><i class="ln"></i><span class="part c">Software</span><span class="mono">Team project at Malmö University, spring 2024</span></div>
+          <h3 class="title">FutQuiz</h3>
+          <p class="sub">A football quiz in the style of Kahoot, and my first time building software with a team of five.</p>
+        </div>
+        <dl class="meta">
+          <div><dt>Team</dt><dd>5 developers</dd></div>
+          <div><dt>When</dt><dd>March–May 2024</dd></div>
+          <div><dt>Budget</dt><dd>1,100 hours, run in Scrum sprints</dd></div>
+          <div><dt>My part</dt><dd>Frontend, quiz flow and CI/CD</dd></div>
+        </dl>
+
+        <figure>
+          <div class="shot"><div class="bar"><i></i><i></i><i></i><span>FutQuiz question view</span></div>
+          <button class="zoom" data-cap="Question view with the 30-second timer and progress bar"><img src="img/fq_16.jpg" alt="FutQuiz question screen: a football question with four answer buttons, a 30-second timer and a progress bar, over a floodlit stadium"></button></div>
+          <figcaption>Ten questions, 30 seconds each. The progress bar and menu were among the parts I built.</figcaption>
+        </figure>
+
+        <div class="two">
+          <div class="prose">
+            <p>Players pick a difficulty (easy, medium or hard) and a category, answer ten questions against a 30-second clock and land on a leaderboard. Players can also suggest their own questions, and an admin approves them into the live question bank.</p>
+            <p>I laid the first stones: the database connection, the quiz flow, sign-up and sign-in with error handling, the progress bar and menu, the admin views, the user list and logout. I also set up CI/CD with integration testing, so nothing reached the main branch unless every test passed. Most of the visual design is CSS, with JavaScript added on top as progressive enhancement, so the interface still holds together when JavaScript is off.</p>
+            <p>We ran the project like a real one. There were requirements prioritised with MoSCoW, a design document with system, sequence and use-case diagrams and an ERD, a test document, time reports, and four review sessions where we presented to supervisors and gave feedback to other teams.</p>
+            <h4>My individual deep-dive</h4>
+            <p>I wrote the team's usability analysis. I evaluated the interface against Jakob Nielsen's ten heuristics at two checkpoints and turned the findings into concrete changes: a visible timer and progress bar, familiar button labels, password rules shown up front, and one consistent colour and type system.</p>
+          </div>
+          <div style="display:flex;flex-direction:column;gap:14px">
+            <figure><div class="shot"><div class="bar"><i></i><i></i><i></i><span>Start page</span></div><button class="zoom" data-cap="Start page: choose difficulty and category, with the leaderboard below"><img src="img/fq_1.jpg" alt="FutQuiz start page with difficulty and category options and a leaderboard" loading="lazy"></button></div></figure>
+            <figure><div class="shot"><div class="bar"><i></i><i></i><i></i><span>Admin panel</span></div><button class="zoom" data-cap="Admin panel: approve or reject questions that players have suggested"><img src="img/fq_12.jpg" alt="FutQuiz admin panel listing suggested questions with approve buttons" loading="lazy"></button></div></figure>
+            <figure><div class="shot"><div class="bar"><i></i><i></i><i></i><span>Suggest a question</span></div><button class="zoom" data-cap="Players can suggest their own questions"><img src="img/fq_11.jpg" alt="Form for suggesting a new quiz question with four answers" loading="lazy"></button></div></figure>
+          </div>
+        </div>
+
+        <div class="shots3">
+          <figure><button class="zoom" data-cap="Database ERD: admins, users and the question bank"><img src="img/fq_3.jpg" alt="Entity relationship diagram with tables for admins, questions and users" style="border-radius:8px;background:#fff;border:1px solid var(--line)" loading="lazy"></button><figcaption>ERD: users, admins and the question bank</figcaption></figure>
+          <figure><button class="zoom" data-cap="Use-case diagram for players and administrators"><img src="img/fq_10.jpg" alt="Use-case diagram showing player and administrator actions" style="border-radius:8px;background:#fff;border:1px solid var(--line)" loading="lazy"></button><figcaption>Use cases for players and admins</figcaption></figure>
+          <figure><button class="zoom" data-cap="Sequence diagram of a full quiz round"><img src="img/fq_4.jpg" alt="Sequence diagram between user, web server, database and Flask" style="border-radius:8px;background:#fff;border:1px solid var(--line);aspect-ratio:1/1;object-fit:cover;object-position:top" loading="lazy"></button><figcaption>One quiz round, from login to result</figcaption></figure>
+        </div>
+        <div class="kit-wrap"><p class="kit-h">Toolkit</p><div class="kit"><div class="kit-g"><h5>Backend</h5><ul><li class="tool"><svg aria-hidden="true"><use href="#i-terminal"/></svg><span>Python<small>Game logic</small></span></li><li class="tool"><svg aria-hidden="true"><use href="#i-server"/></svg><span>Flask<small>Routes and sessions</small></span></li><li class="tool"><svg aria-hidden="true"><use href="#i-database"/></svg><span>PostgreSQL<small>Users and questions</small></span></li></ul></div><div class="kit-g"><h5>Frontend</h5><ul><li class="tool"><svg aria-hidden="true"><use href="#i-layout"/></svg><span>HTML &amp; CSS<small>Layout and design</small></span></li><li class="tool"><svg aria-hidden="true"><use href="#i-layers"/></svg><span>Jinja<small>Templates</small></span></li><li class="tool"><svg aria-hidden="true"><use href="#i-code"/></svg><span>JavaScript<small>Timer and progress</small></span></li></ul></div><div class="kit-g"><h5>Teamwork</h5><ul><li class="tool"><svg aria-hidden="true"><use href="#i-branch"/></svg><span>Git &amp; GitHub<small>Branches, reviews and CI/CD</small></span></li><li class="tool"><svg aria-hidden="true"><use href="#i-users"/></svg><span>Scrum<small>Sprints and reviews</small></span></li></ul></div></div></div>
+        <p class="lesson"><b>What it taught me</b>Code is the easy half. Agreeing on requirements, reviewing each other's work and merging five people's branches is the part a page builder never prepared me for.</p>
+      </article>
+
+      <!-- NSR -->
+      <article class="chapter code" id="nsr">
+        <div>
+          <div class="ch-kicker"><span class="num">Chapter 6</span><i class="ln"></i><span class="part c">Software</span><span class="mono">Client project for NSR AB, autumn 2025</span></div>
+          <h3 class="title">Avfallskompassen</h3>
+          <p class="sub">A planning tool where property owners draw their waste room to scale, place the bins and see what it costs, built for NSR in north-western Skåne.</p>
+        </div>
+        <dl class="meta">
+          <div><dt>Client</dt><dd>NSR AB</dd></div>
+          <div><dt>Team</dt><dd>8 developers</dd></div>
+          <div><dt>When</dt><dd>Sept 2025 – Jan 2026</dd></div>
+          <div><dt>My part</dt><dd>Auth UI, dashboard, admin tools, room versions</dd></div>
+        </dl>
+
+        <figure>
+          <div class="shot"><div class="bar"><i></i><i></i><i></i><span>Avfallskompassen planning tool</span></div>
+          <button class="zoom" data-cap="The planning tool: a 6 × 4.5 m waste room with bins per fraction, and live cost and volume compared with similar properties"><img src="img/nsr_planning.jpg" alt="Planning tool with a 6 by 4.5 metre room drawn to scale, bins for each waste fraction along the walls, a door, and a panel with annual cost, bin volume and benchmarks"></button></div>
+          <figcaption>The planning tool, rendered from the project's source with sample data. Each bin is drawn at its real size, and the panel recalculates annual cost, total volume and litres per apartment as you move things.</figcaption>
+        </figure>
+
+        <div class="two">
+          <div class="prose">
+            <p>When a property owner plans a waste room (<em>miljörum</em>), the questions are practical. Do the bins fit? Can the door open? Are we paying for more volume than we need? Avfallskompassen answers them visually. You set the room's size, add doors, drag in bins for each fraction, and the tool shows the yearly cost, the total bin volume, the estimated CO₂ savings and how the property compares with similar ones.</p>
+            <p>Eight of us built it as a React and TypeScript frontend on a Spring Boot API with PostgreSQL. It had JWT authentication and a CI/CD pipeline in GitHub Actions that ran the backend and frontend tests on every push.</p>
+            <h4>What I built</h4>
+            <ul class="did">
+              <li>The login page and its connection to the backend, and a fix so the navigation bar reacts to login state.</li>
+              <li>The dashboard, and a rework of the UI so it follows NSR's visual identity.</li>
+              <li>A new planning sidebar with dropdown sections and inline error messages instead of browser alerts, plus mobile fixes.</li>
+              <li>The admin side: the admin dashboard, the planning editor and user detail views.</li>
+              <li>Versioning of waste rooms: admins can save, list, switch between and delete versions, with a loading view while they load.</li>
+              <li>The pop-up that lets a user pick which property to plan for, and fixes to the cost analysis and to how plans are identified and stored.</li>
+            </ul>
+          </div>
+          <div style="display:flex;flex-direction:column;gap:14px">
+            <figure><div class="shot"><div class="bar"><i></i><i></i><i></i><span>Dashboard</span></div><button class="zoom" data-cap="Dashboard after login"><img src="img/nsr_dashboard.jpg" alt="NSR planning tool dashboard with cards for properties, planning tool and statistics" loading="lazy"></button></div><figcaption>Dashboard</figcaption></figure>
+            <figure><div class="shot"><div class="bar"><i></i><i></i><i></i><span>Logga in</span></div><button class="zoom" data-cap="Login page"><img src="img/nsr_login.jpg" alt="NSR login page with username and password fields" loading="lazy"></button></div><figcaption>Login</figcaption></figure>
+          </div>
+        </div>
+
+        <div class="shots3">
+          <figure><button class="zoom" data-cap="A waste room planned in the tool"><img src="img/nsr_room_227.jpg" alt="Top-down plan of a waste room with bins along the walls and a door" style="border-radius:8px;border:1px solid var(--line);aspect-ratio:1/1;object-fit:contain;background:#fff" loading="lazy"></button></figure>
+          <figure><button class="zoom" data-cap="A waste room planned in the tool"><img src="img/nsr_room_233.jpg" alt="Top-down plan of a square waste room with bins on three walls" style="border-radius:8px;border:1px solid var(--line);aspect-ratio:1/1;object-fit:contain;background:#fff" loading="lazy"></button></figure>
+          <figure><button class="zoom" data-cap="A waste room planned in the tool"><img src="img/nsr_room_224.jpg" alt="Top-down plan of a narrow waste room with bins along both long walls" style="border-radius:8px;border:1px solid var(--line);aspect-ratio:1/1;object-fit:contain;background:#fff" loading="lazy"></button></figure>
+        </div>
+        <p class="muted" style="font-family:var(--display);font-size:.86rem;margin-top:-18px">Room plans saved by the app as thumbnails during development. Each one records the room's dimensions, doors and bin placement.</p>
+
+        <div class="kit-wrap"><p class="kit-h">Toolkit</p><div class="kit"><div class="kit-g"><h5>Frontend</h5><ul><li class="tool"><svg aria-hidden="true"><use href="#i-code"/></svg><span>React 19<small>UI</small></span></li><li class="tool"><svg aria-hidden="true"><use href="#i-terminal"/></svg><span>TypeScript<small>Types</small></span></li><li class="tool"><svg aria-hidden="true"><use href="#i-canvas"/></svg><span>Konva<small>Room canvas</small></span></li><li class="tool"><svg aria-hidden="true"><use href="#i-palette"/></svg><span>Tailwind<small>Styling</small></span></li><li class="tool"><svg aria-hidden="true"><use href="#i-bolt"/></svg><span>Vite<small>Build</small></span></li></ul></div><div class="kit-g"><h5>Backend</h5><ul><li class="tool"><svg aria-hidden="true"><use href="#i-server"/></svg><span>Spring Boot<small>REST API</small></span></li><li class="tool"><svg aria-hidden="true"><use href="#i-terminal"/></svg><span>Java 17<small>Services</small></span></li><li class="tool"><svg aria-hidden="true"><use href="#i-lock"/></svg><span>Spring Security + JWT<small>Login and roles</small></span></li></ul></div><div class="kit-g"><h5>Data</h5><ul><li class="tool"><svg aria-hidden="true"><use href="#i-database"/></svg><span>PostgreSQL<small>Properties and rooms</small></span></li><li class="tool"><svg aria-hidden="true"><use href="#i-cloud"/></svg><span>Supabase<small>Hosting and storage</small></span></li></ul></div><div class="kit-g"><h5>Quality</h5><ul><li class="tool"><svg aria-hidden="true"><use href="#i-check"/></svg><span>Vitest<small>Frontend tests</small></span></li><li class="tool"><svg aria-hidden="true"><use href="#i-branch"/></svg><span>GitHub Actions<small>CI/CD, tests on every push</small></span></li></ul></div></div></div>
+        <p class="lesson"><b>What it taught me</b>With eight people in one codebase, small things decide whether you move fast. Clear error messages, one shared design and features that don't break someone else's branch matter more than clever code.</p>
+      </article>
+
+      <!-- ALMA -->
+      <article class="chapter code" id="alma">
+        <div>
+          <div class="ch-kicker"><span class="num">Chapter 7</span><i class="ln"></i><span class="part c">Software</span><span class="mono">Bachelor's thesis with Rejlers AB, spring 2026</span></div>
+          <h3 class="title">ALMA</h3>
+          <p class="sub">“Fråga ALMA. Få svar.” An AI assistant that answers residents' questions about a railway expansion, using only the official documents.</p>
+        </div>
+        <dl class="meta">
+          <div><dt>With</dt><dd>Abdullah Hamid, Rejlers AB</dd></div>
+          <div><dt>Where</dt><dd>Malmö University</dd></div>
+          <div><dt>Case</dt><dd>Lund, four tracks (Trafikverket)</dd></div>
+          <div><dt>Runs on</dt><dd>Docker on Railway</dd></div>
+        </dl>
+
+        <figure>
+          <div class="shot"><div class="bar"><i></i><i></i><i></i><span>ALMA, deployed on Railway</span></div>
+          <button class="zoom" data-cap="ALMA answering where a bridge or tunnel is planned, with page references and live quality metrics"><img src="img/alma_ui.jpg" alt="ALMA interface: the question 'find a specific example of where a bridge or tunnel is planned', an answer citing pages 142 to 143, and LIX, Ragas Faithfulness and Answer Relevancy scores"></button></div>
+          <figcaption>A real answer from ALMA. It cites the source document and page numbers, and every answer shows its readability (LIX) and two Ragas quality scores.</figcaption>
+        </figure>
+
+        <div class="two">
+          <div class="prose">
+            <h4 style="margin-top:0">The problem</h4>
+            <p>Trafikverket's project to expand the railway through Lund to four tracks produces hundreds of pages of consultation documents. They are public, but almost impossible for a resident to read. Rejlers coordinates communication with the people affected and answers the same factual questions every day.</p>
+            <h4>What we built</h4>
+            <p>ALMA indexes the project's PDFs and the public StoryMaps pages about the project, retrieves the passages that match a question and writes a short answer in Swedish, with the sources listed. My thesis partner Abdullah and I built it together.</p>
+            <p>The first version was a Streamlit prototype. Retrieval was not good enough, so I rebuilt it. The chunk size went from 1,500 down to 500 so that each chunk covers one idea. Keyword search (BM25) now runs next to the vector search, so project codes and abbreviations are not lost, and a reranker picks the final ten passages. The interface became a React app on a FastAPI backend, deployed with Docker on Railway.</p>
+          </div>
+          <figure><button class="zoom" data-cap="System architecture for the ALMA prototype"><img src="img/alma_arch.jpg" alt="Architecture diagram of the ALMA prototype from ingestion to answer and evaluation" style="border-radius:8px;background:#fff;border:1px solid var(--line)" loading="lazy"></button><figcaption>Architecture diagram from the thesis</figcaption></figure>
+        </div>
+
+        <div class="pipe" role="group" aria-label="ALMA pipeline">
+          <h4>How a question becomes an answer</h4>
+          <div class="lane">
+            <span class="lbl">Ingestion, run ahead of time</span>
+            <div class="node"><b>Documents</b><small>Project PDFs and StoryMaps pages scraped with Playwright</small></div>
+            <div class="node"><b>Docling</b><small>Parses layout and tables into text</small></div>
+            <div class="node"><b>Chunking</b><small>Chunks of size 500, with source metadata</small></div>
+            <div class="node store"><b>ChromaDB</b><small>OpenAI text-embedding-3-small vectors</small></div>
+          </div>
+          <div class="lane">
+            <span class="lbl">At question time</span>
+            <div class="node"><b>Hybrid search</b><small>BM25 + vectors, merged with reciprocal rank fusion</small></div>
+            <div class="node"><b>Rerank</b><small>Cohere cross-encoder: 25 candidates → top 10</small></div>
+            <div class="node"><b>Answer</b><small>GPT-4o-mini, in Swedish, with sources</small></div>
+            <div class="node store"><b>Scores</b><small>LIX readability, Ragas faithfulness and relevancy</small></div>
+          </div>
+        </div>
+
+        <div class="prose">
+          <h4 style="margin-top:0">Testing it on real people</h4>
+          <p>A demo is not a result, so the thesis measured three things. Four professionals at Rejlers rated the answers for accuracy and completeness. We checked whether automatic metrics agreed with them. And nine people connected to the project area compared ALMA with searching the documents on their own.</p>
+        </div>
+
+        <div class="results">
+          <div class="card">
+            <h4>System Usability Scale</h4>
+            <p class="note">Scores above 68 are above average; above 80 is considered excellent.</p>
+            <div class="sus">
+              <div><b>81.1</b><span>Residents (n = 9)</span></div>
+              <div><b>83.1</b><span>Rejlers professionals (n = 4)</span></div>
+            </div>
+            <div class="scale" aria-hidden="true">
+              <div class="track"></div>
+              <div class="m" style="left:81.1%"></div><div class="m" style="left:83.1%"></div>
+              <span class="t" style="left:0%;transform:none">0</span><span class="t" style="left:68%">68</span><span class="t" style="left:100%;transform:translateX(-100%)">100</span>
+            </div>
+          </div>
+          <div class="card">
+            <h4>ALMA or searching yourself? (n = 9)</h4>
+            <div class="bars">
+              <div class="bar-row"><span class="lab">Easier to find information</span><span class="trk"><span class="alma" style="width:88.9%"></span><span class="own" style="width:11.1%"></span></span><span class="n">8 vs 1</span></div>
+              <div class="bar-row"><span class="lab">Easier to understand</span><span class="trk"><span class="alma" style="width:100%"></span></span><span class="n">9 vs 0</span></div>
+              <div class="bar-row"><span class="lab">Most helpful</span><span class="trk"><span class="alma" style="width:100%"></span></span><span class="n">9 vs 0</span></div>
+              <div class="bar-row"><span class="lab">Would use next time</span><span class="trk"><span class="alma" style="width:88.9%"></span><span class="own" style="width:11.1%"></span></span><span class="n">8 vs 1</span></div>
+            </div>
+            <div class="key"><span>ALMA</span><span class="o">Own search</span></div>
+          </div>
+        </div>
+
+        <ul class="findings">
+          <li><span class="mono">RQ1: Accuracy</span><b>Good on standard questions, weaker on complex ones</b><span>ALMA reached acceptable accuracy on predefined tasks (3.25–4.25 of 5) but dropped on the professionals' own questions (2.33–3.33). It simplified rather than invented, and lost technical nuance along the way.</span></li>
+          <li><span class="mono">RQ2: Metrics</span><b>Automatic scores can't replace experts</b><span>None of LIX, Ragas Faithfulness or Answer Relevancy tracked the experts' ratings. Answer Relevancy returned zero for 40% of the Swedish answers.</span></li>
+          <li><span class="mono">RQ3: Trust</span><b>A trust gap</b><span>5 of 9 residents felt confident in answers that the professionals had flagged as partly unreliable. A well-presented AI earns more trust than its accuracy justifies.</span></li>
+        </ul>
+
+        <div class="kit-wrap"><p class="kit-h">Toolkit</p><div class="kit"><div class="kit-g"><h5>Ingestion</h5><ul><li class="tool"><svg aria-hidden="true"><use href="#i-globe"/></svg><span>Playwright<small>Scrapes StoryMaps</small></span></li><li class="tool"><svg aria-hidden="true"><use href="#i-doc"/></svg><span>Docling<small>Parses PDFs</small></span></li><li class="tool"><svg aria-hidden="true"><use href="#i-database"/></svg><span>ChromaDB<small>Vector store</small></span></li></ul></div><div class="kit-g"><h5>Retrieval</h5><ul><li class="tool"><svg aria-hidden="true"><use href="#i-spark"/></svg><span>OpenAI embeddings<small>Semantic search</small></span></li><li class="tool"><svg aria-hidden="true"><use href="#i-search"/></svg><span>BM25<small>Keyword search</small></span></li><li class="tool"><svg aria-hidden="true"><use href="#i-layers"/></svg><span>Cohere Rerank<small>Picks the top 10</small></span></li></ul></div><div class="kit-g"><h5>Answer &amp; evaluation</h5><ul><li class="tool"><svg aria-hidden="true"><use href="#i-spark"/></svg><span>GPT-4o-mini<small>Writes the answer</small></span></li><li class="tool"><svg aria-hidden="true"><use href="#i-check"/></svg><span>Ragas<small>Quality scores</small></span></li><li class="tool"><svg aria-hidden="true"><use href="#i-doc"/></svg><span>LIX<small>Readability</small></span></li></ul></div><div class="kit-g"><h5>App &amp; deploy</h5><ul><li class="tool"><svg aria-hidden="true"><use href="#i-server"/></svg><span>FastAPI<small>API</small></span></li><li class="tool"><svg aria-hidden="true"><use href="#i-code"/></svg><span>React<small>Interface</small></span></li><li class="tool"><svg aria-hidden="true"><use href="#i-box"/></svg><span>Docker<small>Container</small></span></li><li class="tool"><svg aria-hidden="true"><use href="#i-cloud"/></svg><span>Railway<small>Hosting</small></span></li></ul></div></div></div>
+        <p class="lesson"><b>What it taught me</b>Building the AI was the fast part. Proving whether it can be trusted took real users and real experts, and the trust gap we found is the question I want to keep working on.</p>
+      </article>
+
+
+      <!-- AM Mättjänst -->
+      <article class="chapter" id="am">
+        <div>
+          <div class="ch-kicker"><span class="num">Chapter 8</span><i class="ln"></i><span class="part ">Websites</span><span class="mono">Full circle, client project, 2026</span></div>
+          <h3 class="title">AM Mättjänst</h3>
+          <p class="sub">A website for a two-person surveying firm in Skåne. The same kind of client I started with, but this time every part is written in code.</p>
+        </div>
+        <dl class="meta">
+          <div><dt>Client</dt><dd>AM Mättjänst AB</dd></div>
+          <div><dt>Area</dt><dd>Skåne</dd></div>
+          <div><dt>Built with</dt><dd>Astro 7, TypeScript</dd></div>
+          <div><dt>Year</dt><dd>2026</dd></div>
+        </dl>
+
+        <figure>
+          <div class="shot"><div class="bar"><i></i><i></i><i></i><span>AM Mättjänst start page</span></div>
+          <button class="zoom" data-cap="Start page with the fixed price up front and a drawing of a house being staked out"><img src="img/am_home.jpg" alt="AM Mättjänst start page: headline Rätt läge. Från första pinnen., booking buttons, the fixed price, and a survey drawing of a house with four corner points"></button></div>
+          <figcaption>The price is on the first screen. The drawing shows what the job actually is: four corner points measured from a station.</figcaption>
+        </figure>
+
+        <div class="two">
+          <div class="prose">
+            <p>AM Mättjänst stakes out houses before the ground is dug and checks their position for the building permit (<em>husutstakning</em> and <em>lägeskontroll</em>). Their customers are homeowners with a fresh permit and building contractors. Both want the same things: a clear price, proof that the job was done right, and an easy way to book.</p>
+            <h4>What I built</h4>
+            <ul class="did">
+              <li>Brand guidelines turned into design tokens, with a light and a dark theme.</li>
+              <li>Static Astro pages plus one server route for bookings. It checks the fields, stops bots with a honeypot and emails the request, with drawings attached (PDF, DWG, DXF or images, up to 20 MB), through Resend.</li>
+              <li>One price list in code, excluding VAT. A switch shows consumer prices including VAT by default, as Swedish pricing law requires.</li>
+              <li>Local pages for eight municipalities, schema.org data, a sitemap and an llms.txt, so search engines and AI assistants describe the firm correctly.</li>
+              <li>Pages that work without JavaScript. Without it, the form still posts and the server redirects.</li>
+            </ul>
+          </div>
+          <div style="display:flex;flex-direction:column;gap:14px">
+            <figure><div class="shot"><div class="bar"><i></i><i></i><i></i><span>Dark theme</span></div><button class="zoom" data-cap="The same start page in the dark theme"><img src="img/am_home_dark.jpg" alt="AM Mättjänst start page in the dark theme" loading="lazy"></button></div></figure>
+            <figure><div class="shot"><div class="bar"><i></i><i></i><i></i><span>Prices</span></div><button class="zoom" data-cap="Price list with a switch between private (incl. VAT) and business (excl. VAT) prices"><img src="img/am_priser.jpg" alt="AM Mättjänst price table with a toggle for prices including or excluding VAT" loading="lazy"></button></div></figure>
+          </div>
+        </div>
+        <div class="kit-wrap"><p class="kit-h">Toolkit</p><div class="kit"><div class="kit-g"><h5>Site</h5><ul><li class="tool"><svg aria-hidden="true"><use href="#i-layers"/></svg><span>Astro 7<small>Pages and routes</small></span></li><li class="tool"><svg aria-hidden="true"><use href="#i-terminal"/></svg><span>TypeScript<small>Data and logic</small></span></li><li class="tool"><svg aria-hidden="true"><use href="#i-palette"/></svg><span>Design tokens<small>Light and dark theme</small></span></li></ul></div><div class="kit-g"><h5>Bookings</h5><ul><li class="tool"><svg aria-hidden="true"><use href="#i-mail"/></svg><span>Resend<small>Emails bookings with attachments</small></span></li></ul></div><div class="kit-g"><h5>Findability</h5><ul><li class="tool"><svg aria-hidden="true"><use href="#i-search"/></svg><span>schema.org<small>Search engine data</small></span></li><li class="tool"><svg aria-hidden="true"><use href="#i-spark"/></svg><span>llms.txt<small>Facts for AI assistants</small></span></li></ul></div></div></div>
+        <p class="lesson"><b>What it taught me</b>Six years after BabyLyx the job is the same: a small business that needs to be found and booked. The difference is that now I can build every part of it myself.</p>
+      </article>
+
+      <!-- Epilogue -->
+      <section class="epi" id="contact">
+        <div>
+          <p class="mono" style="color:var(--accent)">What's next</p>
+          <h2>What I bring to your team</h2>
+        </div>
+        <ul class="bring">
+          <li><b>I've shipped for paying clients</b><span>More than 30 websites since 2020, including stores with payments, shipping and ads. I know how to turn a business owner's needs into something they can run.</span></li>
+          <li><b>I work well in a codebase with others</b><span>Scrum, code review, CI/CD and documentation, from a five-person team to eight developers building for a real client.</span></li>
+          <li><b>I build AI and test it</b><span>A deployed RAG system, evaluated with professionals and end users, plus a clear view of where it falls short.</span></li>
+        </ul>
+        <div class="prose">
+          <p>I'm looking for a role in web development, full-stack development or AI engineering.</p>
+        </div>
+        <div class="contact">
+          <h3>Let's talk about what you're building.</h3>
+          <div class="rows">
+            <div class="row"><span class="mono">Email</span><code id="email">simon.gorny@live.se</code><button class="copy" type="button" data-copy="simon.gorny@live.se">Copy</button></div>
+            <div class="row"><span class="mono">GitHub</span><a href="https://github.com/Peppino9" target="_blank" rel="noopener">github.com/Peppino9</a></div>
+          </div>
+        </div>
+      </section>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <span>Simon Gorny, Malmö 2026</span>
+  <span>Screens of Avfallskompassen are rendered from the project's source with sample data.</span>
+</footer>
+
+<dialog class="lb" id="lb"><button type="button" id="lb-close">Close</button><img id="lb-img" alt=""><p id="lb-cap"></p></dialog>
+
+<script>
+(function(){
+  var lb=document.getElementById('lb'),li=document.getElementById('lb-img'),lc=document.getElementById('lb-cap');
+  document.querySelectorAll('.zoom').forEach(function(b){
+    b.addEventListener('click',function(){
+      var im=b.querySelector('img'); if(!im||!lb.showModal) return;
+      li.src=im.currentSrc||im.src; li.alt=im.alt; lc.textContent=b.dataset.cap||im.alt; lb.showModal();
+    });
+  });
+  document.getElementById('lb-close').addEventListener('click',function(){lb.close()});
+  lb.addEventListener('click',function(e){if(e.target===lb)lb.close()});
+
+  document.querySelectorAll('.copy').forEach(function(btn){
+    btn.addEventListener('click',function(){
+      var t=btn.dataset.copy;
+      var done=function(){btn.textContent='Copied';setTimeout(function(){btn.textContent='Copy'},1600)};
+      var fallback=function(){var el=document.getElementById('email');var r=document.createRange();r.selectNodeContents(el);var s=getSelection();s.removeAllRanges();s.addRange(r);btn.textContent='Selected'};
+      try{navigator.clipboard.writeText(t).then(done,fallback)}catch(e){fallback()}
+    });
+  });
+
+  var mb=document.getElementById('menubtn'),mn=document.getElementById('menu');
+  function setMenu(o){mn.hidden=!o;mb.setAttribute('aria-expanded',o?'true':'false')}
+  mb.addEventListener('click',function(){setMenu(mn.hidden)});
+  mn.querySelectorAll('a').forEach(function(a){a.addEventListener('click',function(){setMenu(false)})});
+  document.addEventListener('keydown',function(e){if(e.key==='Escape')setMenu(false)});
+
+  var links=[].slice.call(document.querySelectorAll('.rail a'));
+  var map={};links.forEach(function(a){map[a.getAttribute('href').slice(1)]=a});
+  if('IntersectionObserver' in window){
+    var io=new IntersectionObserver(function(es){
+      es.forEach(function(e){ if(e.isIntersecting){ links.forEach(function(a){a.classList.remove('on')}); var a=map[e.target.id]; if(a)a.classList.add('on'); } });
+    },{rootMargin:'-35% 0px -60% 0px'});
+    Object.keys(map).forEach(function(id){var el=document.getElementById(id);if(el)io.observe(el)});
+  }
+})();
+</script>
+</body>
+</html>
